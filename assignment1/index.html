@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="styles.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+	<script src="lightbox/js/jquery.lightbox-0.5.js"></script>
+	<link rel="stylesheet" type="text/css" href="lightbox/css/jquery.lightbox-0.5.css" media="screen" />
+</head>
+<body>
+
+<div id="stats">
+	<span>Total Liked:</span>
+	<span class="like-count">0</span>
+</div>
+
+<div id="gallery">
+	<div class="photo">
+		<a href="http://lorempixel.com/300/300/food/" class="fancybox">
+			<img src="http://lorempixel.com/100/100/food/" />
+		</a>
+		<div class="caption"><span>Caption here</span></div>
+		<a href="#" class="like">Like</a>
+	</div>
+	<div class="photo">
+		<a href="http://lorempixel.com/300/300/sports/" class="fancybox">
+			<img src="http://lorempixel.com/100/100/sports/" />
+		</a>
+		<div class="caption"><span>Caption here</span></div>
+		<a href="#" class="like">Like</a>
+	</div>
+	<div class="photo">
+		<a href="http://lorempixel.com/300/300/people/" class="fancybox">
+			<img src="http://lorempixel.com/100/100/people/" />
+		</a>
+		<div class="caption"><span>Caption here</span></div>
+		<a href="#" class="like">Like</a>
+	</div>
+	<div class="photo">
+		<a href="http://lorempixel.com/300/300/nature/" class="fancybox">
+			<img src="http://lorempixel.com/100/100/nature/" />
+		</a>
+		<div class="caption"><span>Caption here</span></div>
+		<a href="#" class="like">Like</a>
+	</div>
+	<div class="photo">
+		<a href="http://lorempixel.com/300/300/animals/" class="fancybox">
+			<img src="http://lorempixel.com/100/100/animals/" />
+		</a>
+		<div class="caption"><span>Caption here</span></div>
+		<a href="#" class="like">Like</a>
+	</div>
+	<div class="photo">
+		<a href="http://lorempixel.com/300/300/nightlife" class="fancybox">
+			<img src="http://lorempixel.com/100/100/nightlife/" />
+		</a>
+		<div class="caption"><span>Caption here</span></div>
+		<a href="#" class="like">Like</a>
+	</div>
+	<div class="photo">
+		<a href="http://lorempixel.com/300/300/city/" class="fancybox">
+			<img src="http://lorempixel.com/100/100/city/" />
+		</a>
+		<div class="caption"><span>Caption here</span></div>
+		<a href="#" class="like">Like</a>
+	</div>
+	<div class="photo">
+		<a href="http://lorempixel.com/300/300/transport" class="fancybox">
+			<img src="http://lorempixel.com/100/100/transport/" />
+		</a>
+		<div class="caption"><span>Caption here</span></div>
+		<a href="#" class="like">Like</a>
+	</div>
+	<div class="photo">
+		<a href="http://lorempixel.com/300/300/fashion/" class="fancybox">
+			<img src="http://lorempixel.com/100/100/fashion/" />
+		</a>
+		<div class="caption"><span>Caption here</span></div>
+		<a href="#" class="like">Like</a>
+	</div>
+	<div class="photo">
+		<a href="http://lorempixel.com/300/300/abstract/" class="fancybox">
+			<img src="http://lorempixel.com/100/100/abstract/" />
+		</a>
+		<div class="caption"><span>Caption here</span></div>
+		<a href="#" class="like">Like</a>
+	</div>
+</div>
+<script language="javascript">
+
+(function($) {
+
+
+$('div#gallery').on('click', 'a.like', function() {
+
+var $this = $(this);
+$this.parent().css('background-color', 'yellow');
+var sum = parseInt($('span.like-count').html()) + 1;
+$('span.like-count').html(sum);
+$this.html('Liked!');
+$this.removeClass('like');
+console.log(sum);
+});
+
+})(jQuery);
+
+
+$(document).ready(function() {
+console.log('test');
+		$('#gallery a.fancybox').lightBox();
+	});
+</script>
+</body>
+</html>														

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Accordion</title>
+	<link rel="stylesheet" href="style.css" />
+
+
+
+	<script language="javascript">
+
+	</script>
+</head>
+<body>
+
+<div class="accordion">
+	<div class="label">Label 1</div>
+	<div class="content">This is some content for label 1</div>
+	<div class="label">Label 2</div>
+	<div class="content">This is some content for label 2</div>
+	<div class="label">Label 3</div>
+	<div class="content">This is some content for label 3</div>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+
+<script language="javascript">
+$('.accordion').css('color','gray');
+$('.label').css({
+	color: 'red',
+	'font-size': '20'
+});
+
+
+//$('.content').second().hide();
+//$('.content').third().hide();
+
+$('div.content').hide();
+
+$('div.label').on('click', function() {
+	//console.log('clicked');
+	//console.log($(this));
+var $this = $(this);
+
+var disp = $this.next('.content').css('display');
+if (disp === 'none') {
+	//$('.content').slideDown(300);
+	$('div.content').slideUp(300);
+	$this.next('.content').slideDown(300);
+	$this.Class('active');
+}
+else if (disp === 'block') {
+//$('.content').slideDown(300);
+	$this.next('.content').slideUp(300);
+	$this.removeClass('active');
+}
+
+})
+
+
+</script>
+</body>
+</html>
