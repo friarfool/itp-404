@@ -14,3 +14,151 @@ self-invoking anonymous function
 (function($) {
 alert('init called');
 })(jQuery);
+
+
+
+//ASSIGNMENT 2
+
+<script>
+//objectliteral
+var john {
+	name: 'John',
+	age: 52.
+	sayWussup: function() {
+	console.log('wassup'+ this.name);
+	}
+};
+
+
+john.sayWassup();
+</script>
+
+
+
+<script>
+
+var validation = {
+	isEmpty: function() {
+	if (val.length > 2) {
+	return true;
+	} else {
+	return false;
+	}
+	checkEmaik: function(email) {
+	{
+	if (email.indexOf('@') >0 ) {
+	return true; 
+	} else { 
+	return false; }
+	}
+
+};
+
+
+
+
+
+//constructor function
+var Person = function(name, age) {
+this.name = name;
+this.age = age;
+//this.sayWussup = function() {
+//console.log('Wussip im' + this.name);
+
+//Person.protoype.sayWussup = function() {
+//console.log('Wussup' + this.name);
+
+};
+
+Person.prototype = {
+constructor: Person,
+sayWussup: function() {
+console.log('Wussup' + this.name);
+},
+
+setAge: function(age) {
+	this.age = age;
+	},
+	age: 32
+};
+
+
+};
+};
+
+var david = new Person('David Tang', 26);
+//david.age = 26;
+//david.setAge(26);
+console.log(david);
+
+
+var john = new Person('joe dang');
+console.log(john);
+</script>
+
+
+
+//inheritance
+
+<script>
+var Car = function() {
+
+};
+
+Car.prototype = {
+costructor: Car,
+drive: function() {
+	console.log('im driving');
+}
+
+};
+
+var Van = function(type) {
+this.type = type;
+};
+
+Van.protoype = new Car();
+
+var davidscar = new Van('Honda');
+
+davidscar.drive();
+
+</script>
+
+
+
+var dQuery = function(id) {
+	if ( !(this instanceof dQuery ) ) {
+	return new dQuery(id);
+	}
+	this.el = document.getElementById(id);
+	
+	};
+	
+	
+	dQuery.prototype = {
+	
+	constructor: dQuery,
+	html: function(html) {
+	this.el.innerHTML = html;
+	this.el.style[prop] = value;
+	return this;
+	}
+	
+	};
+	
+	
+	
+	
+	////google maps
+	
+	
+	
+(function() {
+var points = {
+vegasL [32589345938.23523490, -3578474893.34923908]
+};
+
+var vegas = new google.maps.LatLng(points.vegas[0],points.vegas[1]);
+
+})();	

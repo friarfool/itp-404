@@ -11,14 +11,18 @@
 <div>
 	<img src="photos/image2.jpg" id="accordion1">
 	<p id="accordion1d"></p>
-	<img src="icons/prev.gif" id="prev" class="accordion1" /><img src="icons/next.gif" id="next" class="accordion1" /><img src="icons/close.gif" id="close" class="accordion1" />
+	<img src="icons/prev.gif" class="prev" />
+	<img src="icons/next.gif" id="next" class="next" />
+	<img src="icons/close.gif" id="close" class="close" />
 </div><br />
 
 
 <div>
 	<img src="images/image3.jpg" id="accordion2">
 	<p id="accordion2d"></p>
-	<img src="icons/prev.gif" id="prev2" class="accordion2" /><img src="icons/next.gif" id="next2" class="accordion2" /><img src="icons/close.gif" id="close2" class="accordion2" />
+	<img src="icons/prev.gif" id="prev2" class="accordion2" />
+	<img src="icons/next.gif" id="next2" class="accordion2" />
+	<img src="icons/close.gif" id="close2" class="accordion2" />
 </div>
 
 <script language="javascript">
@@ -39,35 +43,38 @@ var Slides = function(location,width,height,images,descriplocation,descriptions)
 	document.getElementById(this.location).style.height = this.width;
 	document.getElementById(this.location).src = this.images[imageNum];
 	document.getElementById(this.descriplocation).innerHTML += this.descriptions[imageNum];
+	Slides.prototype.events();
 }
 
 Slides.prototype = {
 	constructor: Slides,
-	nextSlide: function(classname) {
+	nextSlide: function() {
         imageNum = (imageNum+1) % totalImages;
         document.getElementById(classname).src = classname.images[imageNum];
         document.getElementById(this.descriplocation).innerHTML = this.descriptions[imageNum];
         			},
-	prevSlide: function(classname) {
-		classname = classname;
+	prevSlide: function() {
         imageNum = (imageNum-1) % totalImages;
-        document.getElementById(classname).src = classname[imageNum];
-        document.getElementById(this.descriplocation).innerHTML += this.descriptions[imageNum];
+        $(this).attr('src', classname[imageNum]);
+        document.getElementByClass(this.descriplocation).innerHTML += this.descriptions[imageNum];
         			},
 	hideDescrips: function(classname) {
         document.getElementById(this.descriplocation).innerHTML = "";
-			}	
+			},
+	events: function() {
+		var that = this;
+		
+		$('.prev').on('click',function() {
+			that.prevSlide('.prev');
+		});
+	$('.next').on('click',this.nextSlide);
+	$('.close').on('click',this.hideDescrips);
+	}		
 };
 
 var firstslides = new Slides ("accordion1","572px","400px",["photos/image1.jpg", "photos/image2.jpg"],"accordion1d",["flower one", "flower2"]);
 var secondslides = new Slides ("accordion2","572px","400px",["images/image1.jpg", "images/image2.jpg"],"accordion2d",["jucy one", "jucy2"]);
 
-
-(function($) {
-$('#prev').bind('click', Slides.prototype.prevSlide($(this).attr("class")));
-$('#next').bind('click', Slides.prototype.nextSlide($(this).attr("class")));
-$('#close').bind('click', Slides.prototype.hideDescrips($(this).attr("class")));
-})(jQuery);
 
 
 })();
