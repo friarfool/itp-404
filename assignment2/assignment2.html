@@ -8,28 +8,28 @@
 <body>
 
 
-<div>
-	<img src="photos/image2.jpg" id="accordion1">
+<div class="slideshow" id="firstslides">
 	<p id="accordion1d"></p>
+	<img src="" id="accordion1" class="0 main">
 	<img src="icons/prev.gif" class="prev" />
-	<img src="icons/next.gif" id="next" class="next" />
-	<img src="icons/close.gif" id="close" class="close" />
+	<img src="icons/next.gif" class="next" />
+	<img src="icons/close.gif" class="close" />
 </div><br />
 
 
-<div>
-	<img src="images/image3.jpg" id="accordion2">
+<div class="slideshow" id="secondslides">
 	<p id="accordion2d"></p>
-	<img src="icons/prev.gif" id="prev2" class="accordion2" />
-	<img src="icons/next.gif" id="next2" class="accordion2" />
-	<img src="icons/close.gif" id="close2" class="accordion2" />
+	<img src="" id="accordion2" class="0 main">
+	<img src="icons/prev.gif" class="prev" />
+	<img src="icons/next.gif" class="next" />
+	<img src="icons/close.gif" class="close" />
 </div>
 
 <script language="javascript">
 var foo = (function(){
 
-	var imageNum = 0;
- 	var totalImages = 2; 
+	var imageNum = 1;
+ 	var totalImages = 1; 
  	
  	
 var Slides = function(location,width,height,images,descriplocation,descriptions) {
@@ -48,28 +48,61 @@ var Slides = function(location,width,height,images,descriplocation,descriptions)
 
 Slides.prototype = {
 	constructor: Slides,
-	nextSlide: function() {
-        imageNum = (imageNum+1) % totalImages;
-        document.getElementById(classname).src = classname.images[imageNum];
-        document.getElementById(this.descriplocation).innerHTML = this.descriptions[imageNum];
+	nextSlide: function(bigid,bignum) {
+        var imageNum = (bignum+1) % totalImages;
+        if (bigid == "firstslides") {
+       		 $('#firstslides').children('img').eq(0).attr('src', firstslides.images[imageNum]);
+       		 $('#firstslides').children('p').text(firstslides.descriptions[imageNum]);
+      	    }
+       else if (bigid == "secondslides") {
+      		$('#secondslides').children('img').eq(0).attr('src', secondslides.images[imageNum]);
+       	 	$('#secondslides').children('p').text(secondslides.descriptions[imageNum]);
+    		}
         			},
-	prevSlide: function() {
-        imageNum = (imageNum-1) % totalImages;
-        $(this).attr('src', classname[imageNum]);
-        document.getElementByClass(this.descriplocation).innerHTML += this.descriptions[imageNum];
-        			},
-	hideDescrips: function(classname) {
-        document.getElementById(this.descriplocation).innerHTML = "";
+	prevSlide: function(bigid,bignum) {
+     	var imageNum = (bignum-1) % totalImages;
+       	//not sure why this returns a typeerror
+       	//console.log(bigid.images[imageNum]);
+       	//so doing it this laborious way
+       	if (bigid == "firstslides") {
+       		//even here, if i put bigid as the selector below, it doesn't work. why is that?
+       		 $('#firstslides').children('img').eq(0).attr('src', firstslides.images[imageNum]);
+       		  $('#firstslides').children('img').eq(0).attr('class', imageNum + "main");
+       		 $('#firstslides').children('p').text(firstslides.descriptions[imageNum]);
+      	    }
+       else if (bigid == "secondslides") {
+      		$('#secondslides').children('img').eq(0).attr('src', secondslides.images[imageNum]);
+       	 	$('#secondslides').children('p').text(secondslides.descriptions[imageNum]);
+    		}
+    	},
+	
+	hideDescrips: function(bigid) {
+       	if (bigid == "firstslides") {
+       		 $('#firstslides').children('p').text('');
+      	    }
+       else if (bigid == "secondslides") {
+       	 	$('#secondslides').children('p').text('');
+    		}
 			},
+	
 	events: function() {
 		var that = this;
-		
 		$('.prev').on('click',function() {
-			that.prevSlide('.prev');
+		    var parentid = $(this).parent('.slideshow').attr('id');
+		    var thenum = $(this).prev('.main').attr('class').split(' ')[0];
+			that.prevSlide(parentid,thenum);
 		});
-	$('.next').on('click',this.nextSlide);
-	$('.close').on('click',this.hideDescrips);
-	}		
+		$('.next').on('click', function() {
+			 var parenttid = $(this).parent('.slideshow').attr('id');
+			 //not sure why the below works in the "prev" function but is resulting in undefined below
+		 	 var theenum = $(this).prev('.main').attr('class').split(' ')[0];
+		 	that.nextSlide(parenttid,theenum);
+		});
+	$('.close').on('click', function() {
+			 var parentid = $(this).parent('.slideshow').attr('id');
+			 that.hideDescrips(parentid);
+		});
+	}	
 };
 
 var firstslides = new Slides ("accordion1","572px","400px",["photos/image1.jpg", "photos/image2.jpg"],"accordion1d",["flower one", "flower2"]);
