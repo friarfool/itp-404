@@ -28,74 +28,54 @@
 <script language="javascript">
 var foo = (function(){
 
-	var imageNum = 1;
- 	var totalImages = 1; 
+	
  	
  	
 var Slides = function(location,width,height,images,descriplocation,descriptions) {
+	this.imageNum = 0;
+ 	this.totalImages = 4; 
 	this.location = location;
 	this.width = width;
 	this.height = height;
 	this.images = images;
 	this.descriplocation = descriplocation;
 	this.descriptions = descriptions;
-	document.getElementById(this.location).style.height = this.height;
-	document.getElementById(this.location).style.height = this.width;
-	document.getElementById(this.location).src = this.images[imageNum];
-	document.getElementById(this.descriplocation).innerHTML += this.descriptions[imageNum];
-	Slides.prototype.events();
+	$('#'+this.location).css({"height" : this.height, "width" : this.width}).attr('src', this.images[this.imageNum]);
+	$('#'+this.descriplocation).text(this.descriptions[this.imageNum]);
+	this.events();
 }
 
 Slides.prototype = {
 	constructor: Slides,
 	nextSlide: function(bigid,bignum) {
-        var imageNum = (bignum+1) % totalImages;
-        if (bigid == "firstslides") {
-       		 $('#firstslides').children('img').eq(0).attr('src', firstslides.images[imageNum]);
-       		 $('#firstslides').children('p').text(firstslides.descriptions[imageNum]);
-      	    }
-       else if (bigid == "secondslides") {
-      		$('#secondslides').children('img').eq(0).attr('src', secondslides.images[imageNum]);
-       	 	$('#secondslides').children('p').text(secondslides.descriptions[imageNum]);
-    		}
+	//console.log(bigid);
+	//just need to figure out how to make bigid.images[bignum] not return a typeerror. 
+	//this.images doesn't work right. if i use the if statements from previous iteration, everything else runs fine
+       		 $('#'+bigid).children('img').eq(0).attr('src', this.images[bignum]);
+       		 $('#'+bigid).children('p').text(this.descriptions[bignum]);
         			},
 	prevSlide: function(bigid,bignum) {
-     	var imageNum = (bignum-1) % totalImages;
-       	//not sure why this returns a typeerror
-       	//console.log(bigid.images[imageNum]);
-       	//so doing it this laborious way
-       	if (bigid == "firstslides") {
-       		//even here, if i put bigid as the selector below, it doesn't work. why is that?
-       		 $('#firstslides').children('img').eq(0).attr('src', firstslides.images[imageNum]);
-       		  $('#firstslides').children('img').eq(0).attr('class', imageNum + "main");
-       		 $('#firstslides').children('p').text(firstslides.descriptions[imageNum]);
-      	    }
-       else if (bigid == "secondslides") {
-      		$('#secondslides').children('img').eq(0).attr('src', secondslides.images[imageNum]);
-       	 	$('#secondslides').children('p').text(secondslides.descriptions[imageNum]);
-    		}
+       		 $('#'+bigid).children('img').eq(0).attr('src', this.images[bignum]);
+       		 $('#'+bigid).children('p').text(this.descriptions[bignum]);
     	},
 	
 	hideDescrips: function(bigid) {
-       	if (bigid == "firstslides") {
-       		 $('#firstslides').children('p').text('');
-      	    }
-       else if (bigid == "secondslides") {
-       	 	$('#secondslides').children('p').text('');
-    		}
+			$('#'+bigid).children('p').text('');
 			},
 	
 	events: function() {
 		var that = this;
 		$('.prev').on('click',function() {
 		    var parentid = $(this).parent('.slideshow').attr('id');
-		    var thenum = $(this).prev('.main').attr('class').split(' ')[0];
-			that.prevSlide(parentid,thenum);
+ 			var thenum = (that.imageNum - 1) % that.totalImages;
+		 	that.imageNum = thenum;			
+		 	that.prevSlide(parentid,thenum);
 		});
 		$('.next').on('click', function() {
 			 var parenttid = $(this).parent('.slideshow').attr('id');
 			 //not sure why the below works in the "prev" function but is resulting in undefined below
-		 	 var theenum = $(this).prev('.main').attr('class').split(' ')[0];
+		 	 var theenum = (that.imageNum + 1) % that.totalImages;
+		 	 that.imageNum = theenum;
 		 	that.nextSlide(parenttid,theenum);
 		});
 	$('.close').on('click', function() {
@@ -105,8 +85,8 @@ Slides.prototype = {
 	}	
 };
 
-var firstslides = new Slides ("accordion1","572px","400px",["photos/image1.jpg", "photos/image2.jpg"],"accordion1d",["flower one", "flower2"]);
-var secondslides = new Slides ("accordion2","572px","400px",["images/image1.jpg", "images/image2.jpg"],"accordion2d",["jucy one", "jucy2"]);
+var firstslides = new Slides ("accordion1","572px","400px",["photos/image1.jpg", "photos/image2.jpg","photos/image3.jpg","photos/image4.jpg"],"accordion1d",["flower one", "flower2"]);
+//var secondslides = new Slides ("accordion2","572px","400px",["images/image1.jpg", "images/image2.jpg","images/image3.jpg","images/image4.jpg"],"accordion2d",["jucy one", "jucy2"]);
 
 
 
