@@ -47,16 +47,13 @@ var Slides = function(location,width,height,images,descriplocation,descriptions)
 
 Slides.prototype = {
 	constructor: Slides,
-	nextSlide: function(bigid,bignum) {
-	//console.log(bigid);
-	//just need to figure out how to make bigid.images[bignum] not return a typeerror. 
-	//this.images doesn't work right. if i use the if statements from previous iteration, everything else runs fine
-       		 $('#'+bigid).children('img').eq(0).attr('src', this.images[bignum]);
-       		 $('#'+bigid).children('p').text(this.descriptions[bignum]);
+	nextSlide: function(bigid,bignum,obj) {
+       		 $('#'+bigid).children('img').eq(0).attr('src', obj.images[bignum]); 
+       		 $('#'+bigid).children('p').text(obj.descriptions[bignum]);
         			},
-	prevSlide: function(bigid,bignum) {
-       		 $('#'+bigid).children('img').eq(0).attr('src', this.images[bignum]);
-       		 $('#'+bigid).children('p').text(this.descriptions[bignum]);
+	prevSlide: function(bigid,bignum,obj) {
+       		 $('#'+bigid).children('img').eq(0).attr('src', obj.images[bignum]);
+       		 $('#'+bigid).children('p').text(obj.descriptions[bignum]);
     	},
 	
 	hideDescrips: function(bigid) {
@@ -69,14 +66,14 @@ Slides.prototype = {
 		    var parentid = $(this).parent('.slideshow').attr('id');
  			var thenum = (that.imageNum - 1) % that.totalImages;
 		 	that.imageNum = thenum;			
-		 	that.prevSlide(parentid,thenum);
+		 	that.prevSlide(parentid,thenum,that);
 		});
 		$('.next').on('click', function() {
 			 var parenttid = $(this).parent('.slideshow').attr('id');
 			 //not sure why the below works in the "prev" function but is resulting in undefined below
 		 	 var theenum = (that.imageNum + 1) % that.totalImages;
 		 	 that.imageNum = theenum;
-		 	that.nextSlide(parenttid,theenum);
+		 	that.nextSlide(parenttid,theenum,that);
 		});
 	$('.close').on('click', function() {
 			 var parentid = $(this).parent('.slideshow').attr('id');
@@ -86,7 +83,7 @@ Slides.prototype = {
 };
 
 var firstslides = new Slides ("accordion1","572px","400px",["photos/image1.jpg", "photos/image2.jpg","photos/image3.jpg","photos/image4.jpg"],"accordion1d",["flower one", "flower2"]);
-//var secondslides = new Slides ("accordion2","572px","400px",["images/image1.jpg", "images/image2.jpg","images/image3.jpg","images/image4.jpg"],"accordion2d",["jucy one", "jucy2"]);
+var secondslides = new Slides ("accordion2","572px","400px",["images/image1.jpg", "images/image2.jpg","images/image3.jpg","images/image4.jpg"],"accordion2d",["jucy one", "jucy2"]);
 
 
 
