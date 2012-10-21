@@ -1,0 +1,66 @@
+ul, li {
+margin:0;
+padding:0;
+list-style-type: none;
+}
+
+body {
+font-family: arial;
+}
+
+#twitter-users {
+width:500px;
+margin:auto;
+}
+
+#twitter-users li {
+float:left;
+margin:0 10px;
+}
+
+.directions {
+clear:both;
+padding:10px;
+text-align: center;
+}
+
+#tweets {
+width:500px;
+margin:auto;
+}
+#tweets img {
+margin:auto;
+display: block;
+}
+
+#tweets ul {
+margin-top: 20px;
+font-size:11px;
+}
+
+#tweets ul li {
+cursor: pointer;
+margin-bottom: 7px;
+padding:10px;
+}
+
+#tweets ul li:nth-child(2n) {
+background-color:#e3e3e3;
+}
+
+#tweets ul li img {
+float:left;
+margin-right: 5px;
+}
+
+#tweets ul li .date {
+font-size:8pt;
+margin-top:3px;
+color:green;
+}
+
+#tweets ul li.read {
+font-style:italic;
+background-color: yellow;
+cursor:default;
+}
