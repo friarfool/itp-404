@@ -1,0 +1,79 @@
+<body>
+
+<input  type="button" value="Click me" onclik="ajax();">
+
+<script src="ajax_get.js"></script>
+<div id="demo"></div>
+
+
+IN AJAX_GET.JS
+
+
+var ajax = function() {
+ var xhr = new XMLHttpRequest();
+ 
+ xhr.open('GET',url,true)
+ xhrs.onreadystatechange = function() {
+ if (xhr.readyState === 4 && xhr.status === 200) {
+ console.log('good'); 
+ document.getElementById('demo').innerHTML = xhr.responseText;
+ }
+ else if (xhr.status >= 400) {
+ console.log('there was error');
+ }
+ };
+ xhr.send(null);
+ 
+ 
+};
+
+
+
+IN REQUEST.PHP
+
+<?php
+$name = $_GET['name'];
+echo "<p>Here is some text.</p>";
+?>
+
+
+
+WITH JQUERY
+
+<body>
+<input type="text" id="name">
+<input type="button" id="some-button" value="some button">
+<div id="results"></div>
+<Sscript....jquery>
+<script src="main.js"></script>
+</body>
+
+IN MAIN.JS
+
+$('#some-button').on('click', function() {
+var name = $
+
+$.ajax({
+url: 'request.php',
+data: {
+name: name,
+school: school
+},
+type: 'GET',
+success: function(res) {
+$("#results").html(res);
+}
+
+});
+
+});
+
+
+
+IN REQUEST.PHP
+
+<?php
+$name = $_GET['name'];
+$school = $_GET['school'];
+echo "<p>Here is some text.</p>";
+?>
