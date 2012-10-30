@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+<title>Facebook JSONP</title>
+<style type="text/css">
+	.facebook-page {
+		padding: 10px;
+		margin: 30px;
+		background-color: gold;
+		font-family: Georgia;
+	}
+
+	h1 {
+		color: red;
+	}
+	h2 {
+		color: gray;
+		font-size: 11.5px;
+	}
+</style>
+<script type="text/javascript">
+//how do I implement this with a template?
+function CommaFormatted(amount) {
+    var delimiter = ","; // replace comma if desired
+    amount = new String(amount);
+    var a = amount.split('.',2)
+    var d = a[1];
+    var i = parseInt(a[0]);
+    if(isNaN(i)) { return ''; }
+    var minus = '';
+    if(i < 0) { minus = '-'; }
+    i = Math.abs(i);
+    var n = new String(i);
+    var a = [];
+    while(n.length > 3)
+    {
+        var nn = n.substr(n.length-3);
+        a.unshift(nn);
+        n = n.substr(0,n.length-3);
+    }
+    if(n.length > 0) { a.unshift(n); }
+    n = a.join(delimiter);
+    if(d.length < 1) { amount = n; }
+    else { amount = n + '.' + d; }
+    amount = minus + amount;
+    return amount;
+}
+</script>
+
+</head>
+<body>
+
+<script type="text/template" id="fb-page-template">
+	<div class="facebook-page">
+	<img src="{{ pic_square }}" alt="Thumbnail image for {{ name }} Facebook page." />
+	<h1>{{ name }}</h1>
+	<p><strong>Total Likes:</strong> <span>{{ fan_count }}</span></p>
+	<p><i>{{ about }}</i></p>
+	<p>Learn more at <a href="{{ page_url }}">the official Facebook page</a>.</p>
+	<h2 class="add-info">Click here for more info</h2>
+	<div class="add">
+		<p>Visit our official website <a href="{{ website }}">here</a>.</p>
+		<p><strong>People talking about page:</strong> {{ talking_about_count }}</p>
+		<p><strong>Founded</strong>: {{ founded }}</p>
+	</div>
+	</div>
+</script>
+
+
+<div id="fb-page"></div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="handlebars-1.0.rc.1.js"></script>
+<script src="jsonp-facebook.js"></script>
+
+</body>
+</html>
