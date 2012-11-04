@@ -1,0 +1,27 @@
+#wrapper {
+	width:1000px;
+	font:Georgia;
+	display:block;
+}
+#map {
+	height:600px;
+	width:800px;
+	margin:10px;
+	float:left;
+	position: absolute; 
+	left: 10px;
+}
+
+#sidebar {
+	width:200px;
+	float:right;
+	position: absolute; 
+	left: 830px;
+}
+
+#eventlistings {
+	clear:both;
+	width:800px;
+	position: absolute; 
+	top: 700px;
+}

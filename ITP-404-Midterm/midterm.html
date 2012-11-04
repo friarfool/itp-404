@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Taylor Swift Concerts</title>
+		<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+	</head>
+<body>
+	<h1>Taylor Swift's Upcoming Concerts</h1>
+	<script type="text/template" id="event-template">
+		<div class="events">
+		<h3>{{ title }}</h3>
+		<p><i>{{start_time}} at {{venue_name}} in {{city_name}}, {{region_name}}, {{country_name}}</i></p>
+		<p>Learn more <a href="{{url}}">here</a>.
+		</div>
+	</script>
+
+	<div id="wrapper">
+		<div id="map"></div>
+		<div id="sidebar">
+			<h2>Taylor Swift's Recent Tweets</h2>
+			<div id="side_content"></div>
+		</div>
+	</div>	
+	
+	<div id="eventlistings">
+		<h2>List of Taylor Swift Concerts</h2>
+		<div id="event-details"></div>
+	</div>
+
+	<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+	<script>
+		var map = null;
+		(function() {
+		var points = {
+		midpoint: [36.05178307933835, 42.49737373046878]
+		};
+		var midpoint = new google.maps.LatLng(points["midpoint"][0], points["midpoint"][1]);
+		var myOptions = {
+			zoom: 2,
+			center: midpoint,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+			};
+
+		map = new google.maps.Map(document.getElementById("map"), myOptions);
+	})();
+	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<script src="handlebars-1.0.rc.1.js"></script>
+	<script src="main.js"></script>
+	<script language="javascript">
+		$(window).load(function() {
+		$("#side_content").html('<img src="ajax-loader.gif" />'); 
+		$.ajax({
+			url: 'load_tweets.php',
+			success: function(res) {
+			$('#side_content').html(res);
+				}
+			});
+		});
+	</script>
+	</body>
+</html>
