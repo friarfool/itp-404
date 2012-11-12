@@ -1,0 +1,27 @@
+body {
+	font-family: georgia;
+	color:black;
+	padding:10px;
+}
+
+.tweet {
+font-size:20px;
+color:red;
+}
+
+.tweet-details {
+font-size:12px;
+}
+.link {
+font-size:10px;
+color:blue;
+}
+.gray {
+background-color:#E3DCDF;
+padding:10px;
+}
+
+.yellow {
+background-color:#F2EBB8;
+padding:10px;
+}
