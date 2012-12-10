@@ -1,0 +1,96 @@
+body {
+	font-family: georgia;
+	color:black;
+	padding:10px;
+}
+
+h3 {
+	font-size:15px;
+}
+
+.tweet {
+	font-size:20px;
+	color:red;
+}
+
+.tweettext {
+	font-size:13px;
+	color:black;
+}
+
+.small {
+	font-size:14px;
+}
+
+.left {
+	float:left;
+	margin-right:10px;
+	padding:5px;
+}
+
+.tweet-details {
+	font-size:12px;
+}
+
+.link {
+	font-size:10px;
+	color:blue;
+}
+
+.gray {
+	background-color:#E3DCDF;
+	padding:10px;
+	margin-bottom:20px;
+	width: 45%;
+	float:right;
+}
+
+.yellow {
+	background-color:#F2EBB8;
+	padding:10px;
+	margin-bottom:20px;
+	margin-right:5%;
+	float:left;
+	width:45%
+}
+
+
+.dark {
+	background-color:#F2BADD;
+	padding:10px;
+	margin-bottom:5px;
+}
+
+.light {
+	background-color:#BADDF2;
+	padding:10px;
+	margin-bottom:5px;
+
+}
+
+.purp {
+	background-color:#F2BADD;
+	padding:10px;
+	margin-bottom:5px;
+	clear:both;
+	height:160px;
+}
+
+.blue {
+	background-color:#BADDF2;
+	padding:10px;
+	margin-bottom:5px;
+	clear:both;
+	height:160px;
+}
+
+#map {
+	height: 300px;
+	width:100%;
+	margin:0 auto;
+	margin-bottom:20px;
+}
+
+.hidden {
+	display: none;
+}
