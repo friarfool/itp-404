@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Paresh's Food Search
 
 This app is live on [Pagoda Box](http://alone-alba.pagodabox.com/).
