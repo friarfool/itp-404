@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 # Paresh's Food Search
+
+This app is live on [Pagoda Box](http://alone-alba.pagodabox.com/).
 
 ## Requirements Met
 
@@ -12,11 +15,11 @@
 
 5. JQuery to show/hide different sections. Jquery plugins to display tips and lightbox for pictures.
 
-6. 
-* Geolocation API used on search screen to pre-populate location search field.  
-* Blade templating to display the main results page as well as the Instagram pictures template. 
-* Laravel Validator class to make sure search form is filled out.
-* Instagram and Twitter APIs.
+6. From list of other choices:
+	* Geolocation API used on search screen to pre-populate location search field.  
+	* Blade templating to display the main results page as well as the Instagram pictures template. 
+	* Laravel Validator class to make sure search form is filled out.
+	* Instagram and Twitter APIs.
 
 ## Other Notes
 

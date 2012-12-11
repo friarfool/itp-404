@@ -109,7 +109,7 @@
 	}) 
 	
 	}
-	$('#map').show(1500);
+	$('#map').show();
 	})
 	
 	
@@ -120,8 +120,8 @@
 		var food = $(this).parent().children(".localtweets").attr('name');
 		
 		
-		 var key = "AIzaSyDJbYUX1nNkME_nACwTDLgeCuCXCWDEANM";
-   var cx = "001820243321672215928:_z5oeojhi_y";
+		 var key = "xxx";
+   var cx = "xxx";
       function hndlr(response) {
       for (var i = 0; i < response.items.length; i++) {
         var item = response.items[i];
